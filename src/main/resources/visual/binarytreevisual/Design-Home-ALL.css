@@ -1,0 +1,99 @@
+.Background {
+    -fx-background-color: #111320;
+    -fx-border-color: #282C44;
+    -fx-border-width: 1;
+}
+
+.Foreground {
+    -fx-text-fill: #9F9FAC;
+    -fx-font-family: 'Inter Bold';
+    -fx-font-weight: bold;
+    -fx-font-size: 24;
+}
+
+.separator {
+    -fx-background-color: #282C44;
+    -fx-border-color: transparent transparent #282C44 transparent; /* Color the border at the bottom (black) */
+    -fx-border-width: 0 0 2px 0; /* Set the thickness of the separator line */
+}
+
+.Frame-Background {
+    -fx-background-color: #141623;
+    -fx-border-color: #282C44;
+    -fx-border-width: 1;
+}
+
+.Frame-Background-Foreground {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: 'Consolas';
+    -fx-font-size: 14;
+}
+
+.Frame-Background-Foreground-Border {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: 'Consolas';
+    -fx-font-size: 14;
+    -fx-border-color: #141623;      /* Border color */
+    -fx-border-width: 1;             /* Border thickness */
+    -fx-border-style: solid;
+}
+
+.text-area {
+    -fx-background-color: #141623; /* Background color of the TextArea */
+    -fx-border-color: #282C44;      /* Border color */
+    -fx-border-width: 1;             /* Border thickness */
+    -fx-border-style: solid;          /* Border style */
+}
+
+.text-area .content {
+    -fx-background-color: #141623; /* Background color of the content inside the TextArea */
+    -fx-text-fill: #9F9FAC; /* Text color */
+    -fx-font-family: 'Inter Regular'; /* Use the loaded font family name */
+    -fx-font-size: 14; /* Font size */
+}
+
+.Frame-Background-Button {
+    -fx-background-color: #141623; /* Background color of the TextArea */
+    -fx-border-color: #282C44;      /* Border color */
+    -fx-border-width: 1;             /* Border thickness */
+    -fx-border-style: solid;
+}
+
+.Frame-Background-Button-Foreground {
+    -fx-text-fill: #7CAADE;
+    -fx-font-family: 'Inter Regular'; /* Use the loaded font family name */
+    -fx-font-size: 14; /* Font size */
+}
+
+.Frame-Foreground {
+    -fx-text-fill: #9F9FAC;
+    -fx-font-family: 'Consolas'; /* Use the loaded font family name */
+    -fx-font-size: 14; /* Font size */
+}
+
+.Frame-SubFrame-Background {
+    -fx-background-color: #242631;
+    -fx-border-color: #282C44;
+    -fx-border-width: 1;
+    -fx-border-style: solid;
+}
+
+.Frame-SubFrame-Background-SubFrame {
+    -fx-background-color: #282C44;
+}
+
+@font-face {
+    font-family: 'Inter Regular';
+    src: url('fonts/Inter-Regular.ttf');
+}
+
+
+@font-face {
+    font-family: 'Inter Semi Bold';
+    src: url('fonts/Inter-SemiBold.ttf');
+}
+
+@font-face {
+    font-family: 'Inter Bold';
+    src: url('fonts/Inter-Bold.ttf');
+}
