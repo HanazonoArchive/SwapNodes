@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane fx:id="OuputMainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="538.0" prefWidth="654.0" styleClass="Background" stylesheets="@Design-Home-ALL.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visual.binarytreevisual.SwapNodes4_HomeOutputController">
+   <children>
+      <Label layoutX="13.0" layoutY="22.0" styleClass="Foreground" text="OUTPUT" />
+      <Separator layoutX="116.0" layoutY="39.0" prefWidth="538.0" styleClass="Separator" />
+      <Pane layoutX="11.0" layoutY="61.0" prefHeight="421.0" prefWidth="633.0" styleClass="Frame-Background">
+         <children>
+            <Label layoutX="6.0" layoutY="6.0" styleClass="Frame-Background-Foreground" text="Graphics Visual of Binary Tree" />
+         </children>
+      </Pane>
+      <Pane fx:id="ViewResultButton" layoutX="529.0" layoutY="494.0" onMouseClicked="#HandlesButtonClicked" prefHeight="30.0" prefWidth="115.0" styleClass="Frame-Background-Button">
+         <children>
+            <Label layoutX="22.0" layoutY="6.0" styleClass="Frame-Background-Button-Foreground" text="View Result" />
+         </children>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Pane>
+      <Label layoutX="11.0" layoutY="486.0" prefHeight="17.0" prefWidth="100.0" styleClass="Frame-Foreground" text="nodes:" />
+      <Label layoutX="11.0" layoutY="507.0" prefHeight="17.0" prefWidth="100.0" styleClass="Frame-Foreground" text="time taken:" />
+      <Label fx:id="nodesOutputLB" layoutX="118.0" layoutY="486.0" prefHeight="17.0" prefWidth="100.0" styleClass="Frame-Foreground" text="None" />
+      <Label fx:id="timeTakenLB" layoutX="118.0" layoutY="507.0" prefHeight="17.0" prefWidth="100.0" styleClass="Frame-Foreground" text="None" />
+   </children>
+</Pane>

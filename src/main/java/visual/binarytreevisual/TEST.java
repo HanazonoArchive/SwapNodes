@@ -9,7 +9,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
 
-public class StartSwapNodesControllerTEST {
+public class TEST {
     // Don't mind this line ===
     private Stage stage;
     public void setStage(Stage stage) {

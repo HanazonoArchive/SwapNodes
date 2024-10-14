@@ -1,11 +1,9 @@
-// This Code Java File is Completed no Need to Adjust!
-
 package visual.binarytreevisual;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -29,17 +27,23 @@ public class MainApplication extends Application {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.initStyle(StageStyle.UNDECORATED);
-        stage.show();
+
+        // Load the icon
+        URL resourceUrl = getClass().getResource("/visual/binarytreevisual/Image/icon.png");
+        if (resourceUrl != null) {
+            Image iconImage = new Image(resourceUrl.toExternalForm());
+            stage.getIcons().add(iconImage); // Directly add the Image
+        } else {
+            System.out.println("[ERROR]: Icon image not found at the specified path.");
+            System.out.println("Resource URL: " + resourceUrl);
+        }
+
+        stage.show(); // Show the stage after setting the icon
 
         SwapNodes1_StartController controller = fxmlLoader.getController();
         controller.setStage(stage);
 
-        URL resourceUrl = getClass().getResource("/resources/visual/binarytreevisual/Image/icon.png");
-        if (resourceUrl != null) {
-            ImageView logoicons = new ImageView(resourceUrl.toExternalForm());
-            stage.getIcons().add(logoicons.getImage());
-        }
-
+        // Set up mouse dragging for the window
         scene.setOnMousePressed(this::handleMousePressed);
         scene.setOnMouseDragged(this::handleMouseDragged);
     }

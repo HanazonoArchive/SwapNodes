@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
@@ -7,9 +8,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="538.0" prefWidth="654.0" styleClass="Background" stylesheets="@Design-Home-Input.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visual.binarytreevisual.SwapNodes3_HomeInputController">
+<Pane fx:id="InputMainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="538.0" prefWidth="654.0" styleClass="Background" stylesheets="@Design-Home-ALL.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visual.binarytreevisual.SwapNodes3_HomeInputController">
    <children>
-      <Label layoutX="33.0" layoutY="22.0" styleClass="Foreground" text="INPUT" />
+      <Label layoutX="23.0" layoutY="22.0" styleClass="Foreground" text="INPUT" />
       <Separator layoutX="116.0" layoutY="39.0" prefWidth="538.0" styleClass="Separator" />
       <Pane layoutX="11.0" layoutY="77.0" prefHeight="450.0" prefWidth="310.0" styleClass="Frame-Background">
          <children>
@@ -19,6 +20,9 @@
                <children>
                   <Label layoutX="14.0" layoutY="6.0" styleClass="Frame-Background-Button-Foreground" text="Generate Tree" />
                </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Pane>
          </children>
       </Pane>
@@ -28,6 +32,9 @@
                <children>
                   <Label layoutX="14.0" layoutY="6.0" styleClass="Frame-Background-Button-Foreground" text="Generate Tree" />
                </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Pane>
             <Label layoutX="93.0" layoutY="170.0" styleClass="Frame-Background-Foreground" text="Upload File Here" />
             <Pane fx:id="OpenFileButton" layoutX="139.0" layoutY="193.0" onMouseClicked="#HandlesButtonClicked" prefHeight="32.0" prefWidth="32.0">
@@ -38,6 +45,9 @@
                      </image>
                   </ImageView>
                </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Pane>
          </children>
       </Pane>

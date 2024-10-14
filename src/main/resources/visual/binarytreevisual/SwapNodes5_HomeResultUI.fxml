@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane fx:id="OuputMainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="538.0" prefWidth="654.0" styleClass="Background" stylesheets="@Design-Home-ALL.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visual.binarytreevisual.SwapNodes5_HomeResultController">
+   <children>
+      <Label layoutX="24.0" layoutY="22.0" styleClass="Foreground" text="Result" />
+      <Separator layoutX="116.0" layoutY="39.0" prefWidth="538.0" styleClass="Separator" />
+      <Pane layoutX="11.0" layoutY="78.0" prefHeight="200.0" prefWidth="633.0" styleClass="Frame-Background">
+         <children>
+            <Label layoutX="6.0" layoutY="6.0" styleClass="Frame-Background-Foreground" text="File Input Time" />
+            <Pane layoutX="11.0" layoutY="29.0" prefHeight="160.0" prefWidth="611.0" styleClass="Frame-SubFrame-Background">
+               <children>
+                  <Pane prefHeight="160.0" prefWidth="130.0" styleClass="Frame-SubFrame-Background-SubFrame">
+                     <children>
+                        <Label layoutX="7.0" layoutY="8.0" styleClass="Frame-Background-Foreground" text="Sample Size" />
+                        <Label layoutX="7.0" layoutY="28.0" styleClass="Frame-Background-Foreground" text="Time Taken" />
+                        <Label layoutX="7.0" layoutY="48.0" styleClass="Frame-Background-Foreground" text="Iteration" />
+                     </children>
+                  </Pane>
+                  <Label fx:id="FileSampleSizeLB" layoutX="130.0" layoutY="-1.0" prefHeight="25.0" prefWidth="482.0" styleClass="Frame-Background-Foreground-Border" text="None" />
+                  <Label fx:id="FileTimeTakenLB" layoutX="130.0" layoutY="23.0" prefHeight="25.0" prefWidth="482.0" styleClass="Frame-Background-Foreground-Border" text="None" />
+                  <TextArea fx:id="FileIterationTextArea" editable="false" layoutX="129.0" layoutY="48.0" prefHeight="113.0" prefWidth="482.0" wrapText="true" />
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <Pane layoutX="11.0" layoutY="288.0" prefHeight="200.0" prefWidth="633.0" styleClass="Frame-Background">
+         <children>
+            <Label layoutX="6.0" layoutY="6.0" styleClass="Frame-Background-Foreground" text="Manual Input Time" />
+            <Pane layoutX="11.0" layoutY="29.0" prefHeight="160.0" prefWidth="611.0" styleClass="Frame-SubFrame-Background">
+               <children>
+                  <Pane prefHeight="160.0" prefWidth="130.0" styleClass="Frame-SubFrame-Background-SubFrame" />
+                  <Label layoutX="7.0" layoutY="8.0" styleClass="Frame-Background-Foreground" text="Sample Size" />
+                  <Label layoutX="7.0" layoutY="28.0" styleClass="Frame-Background-Foreground" text="Time Taken" />
+                  <Label layoutX="7.0" layoutY="48.0" styleClass="Frame-Background-Foreground" text="Iteration" />
+                  <Label fx:id="ManualSampleSize" layoutX="130.0" layoutY="-1.0" prefHeight="25.0" prefWidth="482.0" styleClass="Frame-Background-Foreground-Border" text="None" />
+                  <Label fx:id="ManualTimeTakenLB" layoutX="130.0" layoutY="23.0" prefHeight="25.0" prefWidth="482.0" styleClass="Frame-Background-Foreground-Border" text="None" />
+                  <TextArea fx:id="ManualIterationTextArea" editable="false" layoutX="129.0" layoutY="47.0" prefHeight="113.0" prefWidth="482.0" wrapText="true" />
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+</Pane>
