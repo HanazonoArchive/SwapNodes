@@ -1,0 +1,34 @@
+.Background {
+    -fx-background-color: #111320;
+    -fx-border-color: #282C44;
+    -fx-border-width: 1;
+}
+
+.SideBar-Background {
+    -fx-background-color: #10121F;
+    -fx-border-color: #282C44;
+    -fx-border-width: 1;
+}
+
+.SideBar-SelectionButton {
+    -fx-background-color: #10121F;
+    -fx-border-color: #282C44;
+    -fx-border-width: 1;
+    -fx-border-radius: 5 5 5 5;
+}
+
+.SideBar-SelectionButton-Foreground {
+    -fx-text-fill: #7CAADE;
+    -fx-font-family: 'Consolas';
+    -fx-font-size: 18px;
+}
+
+@font-face {
+    font-family: 'Inter Semi Bold';
+    src: url('fonts/Inter-SemiBold.ttf');
+}
+
+@font-face {
+    font-family: 'Inter Bold';
+    src: url('fonts/Inter-Bold.ttf');
+}

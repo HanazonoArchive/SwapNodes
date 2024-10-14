@@ -23,15 +23,15 @@ public class MainApplication extends Application {
     public void start(Stage stage) throws IOException {
         this.stage = stage;
 
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("MainUserInterface.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1024, 768);
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("SwapNodes1_StartUI.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 315, 538);
         stage.setTitle("Swap Nodes!");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
 
-        MainController controller = fxmlLoader.getController();
+        SwapNodes1_StartController controller = fxmlLoader.getController();
         controller.setStage(stage);
 
         URL resourceUrl = getClass().getResource("/resources/visual/binarytreevisual/Image/icon.png");

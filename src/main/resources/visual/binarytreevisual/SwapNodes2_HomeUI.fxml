@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="538.0" prefWidth="715.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visual.binarytreevisual.SwapNodes2_HomeController">
+   <children>
+      <Pane styleClass="Background" stylesheets="@Design-Home.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane prefHeight="538.0" prefWidth="60.0" styleClass="SideBar-Background">
+               <children>
+                  <Pane fx:id="InputButton" layoutX="11.0" layoutY="33.0" onMouseClicked="#HandlesClickedButton" prefHeight="37.0" prefWidth="37.0" styleClass="SideBar-SelectionButton">
+                     <children>
+                        <Label layoutX="14.0" layoutY="8.0" styleClass="SideBar-SelectionButton-Foreground" text="I">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Pane>
+                  <Pane fx:id="OuputButton" layoutX="11.0" layoutY="77.0" onMouseClicked="#HandlesClickedButton" prefHeight="37.0" prefWidth="37.0" styleClass="SideBar-SelectionButton">
+                     <children>
+                        <Label layoutX="14.0" layoutY="8.0" styleClass="SideBar-SelectionButton-Foreground" text="O">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Pane>
+                  <Pane fx:id="ResultButton" layoutX="11.0" layoutY="121.0" onMouseClicked="#HandlesClickedButton" prefHeight="37.0" prefWidth="37.0" styleClass="SideBar-SelectionButton">
+                     <children>
+                        <Label layoutX="14.0" layoutY="8.0" styleClass="SideBar-SelectionButton-Foreground" text="R">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Pane>
+                  <Pane fx:id="CloseButton" layoutX="11.0" layoutY="488.0" onMouseClicked="#HandlesClickedButton" prefHeight="37.0" prefWidth="37.0" styleClass="SideBar-SelectionButton">
+                     <children>
+                        <Label layoutX="14.0" layoutY="8.0" styleClass="SideBar-SelectionButton-Foreground" text="X">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Pane>
+               </children>
+            </Pane>
+            <Pane fx:id="ChangePane" layoutX="61.0" prefHeight="538.0" prefWidth="654.0" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

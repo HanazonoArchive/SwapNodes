@@ -1,0 +1,32 @@
+.Background {
+    -fx-background-color: #10121F;
+}
+
+.Foreground {
+    -fx-text-fill: #9F9FAC;
+    -fx-font-family: 'Inter Bold';
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.Button {
+    -fx-background-color: #131522;
+    -fx-border-color: #282C44;
+}
+
+.Button_Foreground {
+    -fx-text-fill: #7CAADE;
+    -fx-font-family: 'Inter Bold';
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Inter Semi Bold';
+    src: url('fonts/Inter-SemiBold.ttf');
+}
+
+@font-face {
+    font-family: 'Inter Bold';
+    src: url('fonts/Inter-Bold.ttf');
+}
