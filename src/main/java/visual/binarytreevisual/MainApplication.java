@@ -11,7 +11,7 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.net.URL;
 
-public class MainApplication extends Application {
+public class    MainApplication extends Application {
 
     private double xOffset = 0;
     private double yOffset = 0;
