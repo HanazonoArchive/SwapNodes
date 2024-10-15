@@ -42,7 +42,8 @@
     -fx-background-color: #141623; /* Background color of the TextArea */
     -fx-border-color: #282C44;      /* Border color */
     -fx-border-width: 1;             /* Border thickness */
-    -fx-border-style: solid;          /* Border style */
+    -fx-border-style: solid;        /* Border style */
+    -fx-text-fill: #9F9FAC;
 }
 
 .text-area .content {

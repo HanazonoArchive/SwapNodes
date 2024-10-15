@@ -100,6 +100,8 @@ public class Algorithm {
             indexes.add(Arrays.asList(a, b));
         }
 
+        System.out.println(indexes);
+
         int t = sc.nextInt();
         List<Integer> queries = new ArrayList<>();
         for (int i = 0; i < t; i++) {

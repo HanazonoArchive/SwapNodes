@@ -17,7 +17,7 @@
       <Pane layoutX="11.0" layoutY="110.0" prefHeight="417.0" prefWidth="310.0" styleClass="Frame-Background">
          <children>
             <Label layoutX="14.0" layoutY="14.0" styleClass="Frame-Background-Foreground" text="Input Text Here" />
-            <TextArea fx:id="ManualInputTextArea" layoutX="11.0" layoutY="37.0" onKeyTyped="#HandlesKeyboardTyped" prefHeight="335.0" prefWidth="288.0" styleClass="Frame-Background-TextArea" wrapText="true" />
+            <TextArea fx:id="ManualInputTextArea" layoutX="11.0" layoutY="37.0" onMouseClicked="#HandlesKeyboardTyped" prefHeight="335.0" prefWidth="288.0" styleClass="Frame-Background-TextArea" wrapText="true" />
             <Pane fx:id="ManualGenerateTreeButton" layoutX="184.0" layoutY="381.0" onMouseClicked="#HandlesButtonClicked" prefHeight="30.0" prefWidth="115.0" styleClass="Frame-Background-Button">
                <children>
                   <Label layoutX="14.0" layoutY="6.0" styleClass="Frame-Background-Button-Foreground" text="Generate Tree" />
@@ -53,7 +53,9 @@
             </Pane>
          </children>
       </Pane>
-      <Text fill="WHITE" layoutX="22.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Frame-Background-Foreground" text="Swap (Depths):" wrappingWidth="115.0" />
-      <TextField fx:id="SwapDepthsTextField" layoutX="137.0" layoutY="68.0" prefHeight="25.0" prefWidth="505.0" styleClass="Frame-Foreground-TextField" />
+      <Text fill="WHITE" layoutX="22.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Frame-Background-Foreground" text="Size:" wrappingWidth="115.0" />
+      <TextField fx:id="SizeTextField" layoutX="137.0" layoutY="68.0" prefHeight="32.0" prefWidth="186.0" styleClass="Frame-Foreground-TextField" />
+      <Text fill="WHITE" layoutX="340.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Frame-Background-Foreground" text="Swap (Depths):" wrappingWidth="115.0" />
+      <TextField fx:id="SwapDepthsTextField" layoutX="456.0" layoutY="68.0" prefHeight="32.0" prefWidth="186.0" styleClass="Frame-Foreground-TextField" />
    </children>
 </Pane>

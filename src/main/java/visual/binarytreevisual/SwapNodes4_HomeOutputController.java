@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -23,6 +24,8 @@ public class SwapNodes4_HomeOutputController {
         this.OutputMainPane = outputMainPane; // Assign the passed reference
     }
 
+    @FXML
+    private GridPane GridPaneOutput;
 
     @FXML
     private Pane ViewResultButton; // Button to trigger the change
