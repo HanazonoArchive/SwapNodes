@@ -21,7 +21,7 @@ public class SwapNodes4_HomeOutputController {
     private Pane OutputMainPane;
 
     public void setOutputMainPane(Pane outputMainPane) {
-        this.OutputMainPane = outputMainPane; // Assign the passed reference
+        this.OutputMainPane = outputMainPane;
     }
 
     @FXML
