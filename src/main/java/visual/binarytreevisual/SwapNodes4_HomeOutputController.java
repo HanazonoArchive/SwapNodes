@@ -1,14 +1,11 @@
 package visual.binarytreevisual;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class SwapNodes4_HomeOutputController {
     private Stage stage;
@@ -21,14 +18,20 @@ public class SwapNodes4_HomeOutputController {
     private Pane OutputMainPane;
 
     public void setOutputMainPane(Pane outputMainPane) {
-        this.OutputMainPane = outputMainPane;
+        this.OutputMainPane = outputMainPane; // Assign the passed reference
     }
 
     @FXML
-    private GridPane GridPaneOutput;
+    private Pane LoadFileTreeButton;
 
     @FXML
-    private Pane ViewResultButton; // Button to trigger the change
+    private Pane LoadManualTreeButton;
+
+    @FXML
+    private Pane OuputMainPane;
+
+    @FXML
+    private Canvas ResultCanvas;
 
     @FXML
     private Label nodesOutputLB;
@@ -37,28 +40,7 @@ public class SwapNodes4_HomeOutputController {
     private Label timeTakenLB;
 
     @FXML
-    void HandlesButtonClicked(MouseEvent event) {
-        if (event.getSource() == ViewResultButton) {
-            loadResultPane(); // Call the method to load the new pane
-        }
-    }
+    void HandlesClicked(MouseEvent event) {
 
-    private void loadResultPane() {
-        try {
-            // Load the new FXML
-            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("SwapNodes5_HomeResultUI.fxml"));
-            Pane resultPane = fxmlLoader.load();
-
-            // Optionally, set the stage if needed
-            SwapNodes5_HomeResultController resultController = fxmlLoader.getController();
-            resultController.setStage(stage); // Pass the stage if needed
-
-            // Clear existing content and add the new pane
-            OutputMainPane.getChildren().clear();
-            OutputMainPane.getChildren().add(resultPane);
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("[ERROR]: Failed to load the Result Pane.");
-        }
     }
 }

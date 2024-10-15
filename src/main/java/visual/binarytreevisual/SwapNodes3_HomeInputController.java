@@ -1,17 +1,25 @@
 package visual.binarytreevisual;
 
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
 public class SwapNodes3_HomeInputController {
     private Stage stage;
+    private long ManualstartTime;
+    private long FilestartTime;
+    private boolean isManualInput = true;
 
     public void setStage(Stage stage) {
         this.stage = stage;
@@ -38,60 +46,136 @@ public class SwapNodes3_HomeInputController {
     @FXML
     private TextField SwapDepthsTextField;
 
-    // Parameters
-    public List<List<Integer>> indexes;
-    public List<Integer> queries;
+    @FXML
+    private Label fileNameLB;
+
     public int size;
 
-    // Output Storage
-    public List<List<Integer>> OutputForDisplay = new ArrayList<>(); // Initialize the OutputForDisplay
+    public List<List<Integer>> OutputForDisplay = new ArrayList<>();
 
     @FXML
     void HandlesButtonClicked(MouseEvent event) {
         if (event.getSource() == ManualGenerateTreeButton) {
+            // Manual input selected
+            isManualInput = true;
+            handleManualInput();
+        } else if (event.getSource() == OpenFileButton) {
+            // File input selected (just selecting file)
+            isManualInput = false;
+            handleFileInput();
+        } else if (event.getSource() == OpenFileGenerateTreeButton) {
+            // File-based tree generation happens here
+            handleFileGenerateTree();
+        }
+    }
+
+    private void handleManualInput() {
+        try {
+            size = Integer.parseInt(SizeTextField.getText());
+
+            String inputText = ManualInputTextArea.getText();
+            AppData appData = AppData.getInstance();
+            appData.sizeManual = size;
+            appData.Manualindexes = IndexProcessor.parseIndexes(inputText, size);
+            appData.Manualqueries = QueryProcessor.parseQueries(SwapDepthsTextField.getText());
+            appData.ManualpairCount = String.valueOf(appData.Manualindexes.size());
+
+            System.out.println("[Debug]: Parsed Manualindexes = " + appData.Manualindexes);
+            System.out.println("[Debug]: Parsed Manualqueries = " + appData.Manualqueries);
+
+            List<List<Integer>> result = AlgorithmSwapNodes.swapNodes(appData.Manualindexes, appData.Manualqueries);
+
+            displayResult(result, true);
+
+        } catch (NumberFormatException e) {
+            System.out.println("[Error]: Invalid input in size or query fields.");
+        } catch (Exception e) {
+            System.out.println("[Error]: Something went wrong while processing the input.");
+            e.printStackTrace();
+        }
+    }
+
+    private void handleFileInput() {
+        FilestartTime = System.nanoTime();
+        FileChooser fileChooser = new FileChooser();
+
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home"), "Desktop"));
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text Files", "*.txt"));
+
+        File selectedFile = fileChooser.showOpenDialog(stage);
+
+        if (selectedFile != null) {
             try {
-                // Get the size and parse the indexes and queries
+                String fileContent = new String(Files.readAllBytes(selectedFile.toPath()));
+
+                AppData appData = AppData.getInstance();
                 size = Integer.parseInt(SizeTextField.getText());
+                appData.sizeFile = size;
 
-                String inputText = ManualInputTextArea.getText();
-                indexes = IndexProcessor.parseIndexes(inputText, size);
+                String fileName = selectedFile.getName();
+                fileNameLB.setText(fileName);
 
-                String queryInput = SwapDepthsTextField.getText();
-                queries = QueryProcessor.parseQueries(queryInput);
+                appData.Fileindexes = IndexProcessor.parseIndexes(fileContent, size);
+                appData.Filequeries = QueryProcessor.parseQueries(SwapDepthsTextField.getText());
+                appData.FilepairCount = String.valueOf(appData.Fileindexes.size());
 
-                System.out.println("[Debug]: Parsed indexes = " + indexes);
-                System.out.println("[Debug]: Parsed queries = " + queries);
+                System.out.println("[Debug]: Parsed Fileindexes from file = " + appData.Fileindexes);
 
-                // Call the Algorithm's swapNodes method
-                List<List<Integer>> result = AlgorithmSwapNodes.swapNodes(indexes, queries);
-
-                // Display the results and store them in OutputForDisplay
-                displayResult(result);
-
+            } catch (IOException e) {
+                System.out.println("[Error]: Failed to read the file.");
+                e.printStackTrace();
             } catch (NumberFormatException e) {
-                System.out.println("[Error]: Invalid input in size or query fields.");
+                System.out.println("[Error]: Invalid input in size field.");
             } catch (Exception e) {
-                System.out.println("[Error]: Something went wrong while processing the input.");
+                System.out.println("[Error]: Something went wrong while processing the file.");
                 e.printStackTrace();
             }
         }
     }
 
-    @FXML
-    void HandlesKeyboardTyped(MouseEvent event) {
-        if (event.getSource() == ManualInputTextArea) {
-            System.out.println("[Debug]: Key Typed has been observed.");
+    private void handleFileGenerateTree() {
+        try {
+            // Here, we use the content already parsed in handleFileInput
+            AppData appData = AppData.getInstance();
+            size = Integer.parseInt(SizeTextField.getText());  // Get the size of the tree
+            appData.sizeFile = size;
+
+            // Ensure Fileindexes and Filequeries are prepared for processing
+            if (appData.Fileindexes.isEmpty() || appData.Filequeries.isEmpty()) {
+                System.out.println("[Error]: Fileindexes or Filequeries are empty. Please check your file input.");
+                return; // Exit if the data is not valid
+            }
+
+            List<List<Integer>> result = AlgorithmSwapNodes.swapNodes(appData.Fileindexes, appData.Filequeries); // Perform tree generation
+
+            // Display the result of the swap operation
+            displayResult(result, false);  // `false` signifies that it was file input
+
+        } catch (NumberFormatException e) {
+            System.out.println("[Error]: Invalid input in size or query fields.");
+        } catch (Exception e) {
+            System.out.println("[Error]: Something went wrong while processing the file.");
+            e.printStackTrace();
         }
     }
 
-    // Method to display the result, either in the console or in the UI
-    private void displayResult(List<List<Integer>> result) {
-        OutputForDisplay.clear(); // Clear previous results before adding new ones
-
+    private void displayResult(List<List<Integer>> result, boolean isManual) {
+        AppData appData = AppData.getInstance();
+        List<Integer> finalIteration = new ArrayList<>();
         StringBuilder output = new StringBuilder();
+
+        // Iterate through the result and build output
         for (List<Integer> traversal : result) {
-            // Create a copy of the current traversal and add it to OutputForDisplay
-            OutputForDisplay.add(new ArrayList<>(traversal)); // Copy the current traversal
+            if (isManual) {
+                appData.ManualoutputForDisplay.add(new ArrayList<>(traversal));
+            } else {
+                appData.FileoutputForDisplay.add(new ArrayList<>(traversal));
+            }
+
+            // Capture the final iteration
+            if (result.indexOf(traversal) == result.size() - 1) {
+                finalIteration.addAll(traversal);
+            }
 
             for (int id : traversal) {
                 output.append(id).append(" ");
@@ -99,8 +183,30 @@ public class SwapNodes3_HomeInputController {
             output.append("\n");
         }
 
-        // Print to console for debugging purposes
-        System.out.println("[Result]: \n" + output.toString());
-        System.out.println("[Result For Display]: \n" + OutputForDisplay);
+        if (isManual) {
+            long ManualendTime = System.nanoTime();
+            long ManualelapsedTime = ManualendTime - ManualstartTime;
+            appData.ManualIterrationTextAreaResult = "[Result]: \n" + output.toString();
+            appData.ManualtimerNanoseconds = ManualelapsedTime;
+            appData.ManualfinalIteration1DArray = finalIteration;
+        } else {
+            long FileendTime = System.nanoTime();
+            long FileelapsedTime = FileendTime - FilestartTime;
+            appData.FileIterrationTextAreaResult = "[Result]: \n" + output.toString();
+            appData.FiletimerNanoseconds = FileelapsedTime;
+            appData.FilefinalIteration1DArray = finalIteration;
+        }
+
+        // Print the final iteration array for debugging
+        System.out.println("[Final Iteration (1D Array)]: " + finalIteration);
+        System.out.println(isManual ? appData.ManualIterrationTextAreaResult : appData.FileIterrationTextAreaResult);
+    }
+
+    @FXML
+    void HandlesKeyboardTyped(MouseEvent event) {
+        if (event.getSource() == ManualInputTextArea) {
+            System.out.println("[Debug]: Key Typed has been observed.");
+            ManualstartTime = System.nanoTime();  // Start the timer when typing happens
+        }
     }
 }

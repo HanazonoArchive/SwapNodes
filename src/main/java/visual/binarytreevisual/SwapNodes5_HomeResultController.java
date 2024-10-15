@@ -3,6 +3,7 @@ package visual.binarytreevisual;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -26,7 +27,7 @@ public class SwapNodes5_HomeResultController {
     private TextArea ManualIterationTextArea;
 
     @FXML
-    private Label ManualSampleSize;
+    private Label ManualSampleSizeLB;
 
     @FXML
     private Label ManualTimeTakenLB;
@@ -34,6 +35,20 @@ public class SwapNodes5_HomeResultController {
     @FXML
     private Pane OuputMainPane;
 
-    //Just Manipulate the text so replace them after completion.
+    @FXML
+    private Pane ResultLoadButton;
 
+    @FXML
+    void HandlesClicked(MouseEvent event) {
+        if (event.getSource() == ResultLoadButton) {
+            AppData appData = AppData.getInstance();
+            ManualIterationTextArea.setText(appData.ManualIterrationTextAreaResult);
+            ManualTimeTakenLB.setText(String.valueOf(appData.ManualtimerNanoseconds) + " Nanoseconds");
+            ManualSampleSizeLB.setText("|" + appData.ManualpairCount + "|");
+
+            FileIterationTextArea.setText(appData.FileIterrationTextAreaResult);
+            FileTimeTakenLB.setText(String.valueOf(appData.FiletimerNanoseconds) + " Nanoseconds");
+            FileSampleSizeLB.setText("|" + appData.FilepairCount + "|");
+        }
+    }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
@@ -37,12 +38,20 @@
                   <Label layoutX="7.0" layoutY="8.0" styleClass="Frame-Background-Foreground" text="Sample Size" />
                   <Label layoutX="7.0" layoutY="28.0" styleClass="Frame-Background-Foreground" text="Time Taken" />
                   <Label layoutX="7.0" layoutY="48.0" styleClass="Frame-Background-Foreground" text="Iteration" />
-                  <Label fx:id="ManualSampleSize" layoutX="130.0" layoutY="-1.0" prefHeight="25.0" prefWidth="482.0" styleClass="Frame-Background-Foreground-Border" text="None" />
+                  <Label fx:id="ManualSampleSizeLB" layoutX="130.0" layoutY="-1.0" prefHeight="25.0" prefWidth="482.0" styleClass="Frame-Background-Foreground-Border" text="None" />
                   <Label fx:id="ManualTimeTakenLB" layoutX="130.0" layoutY="23.0" prefHeight="25.0" prefWidth="482.0" styleClass="Frame-Background-Foreground-Border" text="None" />
                   <TextArea fx:id="ManualIterationTextArea" editable="false" layoutX="129.0" layoutY="47.0" prefHeight="113.0" prefWidth="482.0" wrapText="true" />
                </children>
             </Pane>
          </children>
+      </Pane>
+      <Pane fx:id="ResultLoadButton" layoutX="514.0" layoutY="498.0" onMouseClicked="#HandlesClicked" prefHeight="30.0" prefWidth="130.0" styleClass="Frame-Background-Button">
+         <children>
+            <Label layoutX="50.0" layoutY="6.0" styleClass="Frame-Background-Button-Foreground" text="Load" />
+         </children>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Pane>
    </children>
 </Pane>

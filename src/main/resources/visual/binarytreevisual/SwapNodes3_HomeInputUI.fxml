@@ -38,7 +38,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Pane>
-            <Label layoutX="93.0" layoutY="170.0" styleClass="Frame-Background-Foreground" text="Upload File Here" />
+            <Label fx:id="fileNameLB" layoutX="93.0" layoutY="170.0" styleClass="Frame-Background-Foreground" text="Upload File Here" />
             <Pane fx:id="OpenFileButton" layoutX="139.0" layoutY="193.0" onMouseClicked="#HandlesButtonClicked" prefHeight="32.0" prefWidth="32.0">
                <children>
                   <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">

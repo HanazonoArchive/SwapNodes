@@ -54,7 +54,6 @@ public class SwapNodes2_HomeController {
         }
     }
 
-
     @FXML
     public void initialize() {
         loadInputPane();
@@ -83,8 +82,9 @@ public class SwapNodes2_HomeController {
             }
 
             if (currentPane != null) {
-                paneHistory.push(currentPane);
+                // Make the current pane invisible and push it to the history stack
                 currentPane.setVisible(false);
+                paneHistory.push(currentPane);
             }
 
             ChangePane.getChildren().add(newPane);
@@ -98,10 +98,14 @@ public class SwapNodes2_HomeController {
     }
 
     private void goBack() {
+        // Check if there are panes in history
         if (!paneHistory.isEmpty()) {
+            // Make the current pane invisible
             if (currentPane != null) {
                 currentPane.setVisible(false);
             }
+
+            // Set the current pane to the last pane in the history and make it visible
             currentPane = paneHistory.pop();
             currentPane.setVisible(true);
         }
