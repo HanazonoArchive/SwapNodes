@@ -4,50 +4,67 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
+import java.util.List;
+
 public class drawTree {
-    /*
-    * // Sample binary tree structure
-        Node root = new Node(10);
-        root.left = new Node(5);
-        root.right = new Node(15);
-        root.left.left = new Node(3);
-        root.left.right = new Node(7);
-        root.right.right = new Node(18);
 
-        Pane rootPane = new Pane();
-        Canvas canvas = new Canvas(800, 600);
-        rootPane.getChildren().add(canvas);
+    public void drawVisualTrees(GraphicsContext gc, List<List<Integer>> iterations) {
+        BinaryTreeBuilder rebuilder = new BinaryTreeBuilder();
 
-        GraphicsContext gc = canvas.getGraphicsContext2D();
+        // Step 1: Rebuild trees from each iteration
+        List<BinaryTreeBuilder.Node> trees = rebuilder.rebuildTreesFromIterations(iterations);
 
-        // Drawing the binary tree starting from the root
-        drawTree(gc, root, 400, 50, 200, 50);
-        * */
+        // Step 2: Set canvas dimensions and drawing offsets
+        double canvasWidth = 594;
+        double xOffset = 100; // Horizontal offset for drawing
+        double yOffset = 100;  // Base vertical offset for drawing
+        double iterationSpacing = 150; // Space between each tree iteration
 
-    // Binary Tree Node class
-    private void drawTreeAlgorithm(GraphicsContext gc, BinaryTree.Node node, double x, double y, double xOffset, double yOffset) {
+        // Ensure the canvas is set to the correct width (no height limit applied)
+        gc.getCanvas().setWidth(canvasWidth);
+
+        // Draw each tree based on its iteration
+        for (int i = 0; i < trees.size(); i++) {
+            BinaryTreeBuilder.Node root = trees.get(i);
+            gc.save(); // Save the current state of the graphics context
+
+            // Calculate the vertical position for each tree
+            double startX = canvasWidth / 2; // Center the tree horizontally
+            double startY = 100 + (i * (iterationSpacing + yOffset)); // Adjusting Y position for each tree
+
+            // Draw the tree
+            drawTreeAlgorithm(gc, root, startX, startY, xOffset, yOffset);
+
+            gc.restore(); // Restore the graphics context to the previous state
+        }
+    }
+
+    // Your original drawing algorithm
+    private void drawTreeAlgorithm(GraphicsContext gc, BinaryTreeBuilder.Node node, double x, double y, double xOffset, double yOffset) {
         if (node == null) return;
 
         // Draw left child connection line first
         if (node.left != null) {
+            gc.setStroke(Color.WHITE); // Set line color to white
             gc.strokeLine(x, y, x - xOffset, y + yOffset);
             drawTreeAlgorithm(gc, node.left, x - xOffset, y + yOffset, xOffset / 2, yOffset);
         }
 
         // Draw right child connection line first
         if (node.right != null) {
+            gc.setStroke(Color.WHITE); // Set line color to white
             gc.strokeLine(x, y, x + xOffset, y + yOffset);
             drawTreeAlgorithm(gc, node.right, x + xOffset, y + yOffset, xOffset / 2, yOffset);
         }
 
         // Now draw the node (circle) on top of the lines
-        gc.setFill(Color.LIGHTBLUE);
+        gc.setFill(Color.LIGHTBLUE); // Fill color for the circle
         gc.fillOval(x - 15, y - 15, 30, 30);
-        gc.setStroke(Color.BLACK);
+        gc.setStroke(Color.WHITE); // Circle outline color
         gc.strokeOval(x - 15, y - 15, 30, 30);
 
         // Draw the node value inside the circle
-        gc.setFill(Color.BLACK);
+        gc.setFill(Color.BLACK); // Text color set to black
         gc.setFont(new Font(14));
         gc.fillText(String.valueOf(node.value), x - 6, y + 4);
     }

@@ -6,8 +6,8 @@ public class AlgorithmSwapNodes {
 
     public static class TreeNode {
         int id;
-        Algorithm.TreeNode left;
-        Algorithm.TreeNode right;
+        TreeNode left;
+        TreeNode right;
 
         public TreeNode(int id) {
             this.id = id;
@@ -15,7 +15,7 @@ public class AlgorithmSwapNodes {
     }
 
     public static List<List<Integer>> swapNodes(List<List<Integer>> indexes, List<Integer> queries) {
-        Algorithm.TreeNode root = buildTree(indexes);
+        TreeNode root = buildTree(indexes);
         List<List<Integer>> result = new ArrayList<>();
 
         for (int k : queries) {
@@ -26,11 +26,11 @@ public class AlgorithmSwapNodes {
         return result;
     }
 
-    private static Algorithm.TreeNode buildTree(List<List<Integer>> indexes) {
+    private static TreeNode buildTree(List<List<Integer>> indexes) {
         int n = indexes.size();
-        Algorithm.TreeNode[] nodeList = new Algorithm.TreeNode[n];
+        TreeNode[] nodeList = new TreeNode[n];
         for (int i = 0; i < n; i++) {
-            nodeList[i] = new Algorithm.TreeNode(i + 1);
+            nodeList[i] = new TreeNode(i + 1);
         }
 
         for (int i = 0; i < n; i++) {
@@ -44,21 +44,21 @@ public class AlgorithmSwapNodes {
         return nodeList[0];
     }
 
-    private static void swap(Algorithm.TreeNode node, int target) {
-        Stack<Algorithm.TreeNode> stack = new Stack<>();
+    private static void swap(TreeNode node, int target) {
+        Stack<TreeNode> stack = new Stack<>();
         Stack<Integer> depths = new Stack<>();
 
         stack.push(node);
         depths.push(1);
 
         while (!stack.isEmpty()) {
-            Algorithm.TreeNode current = stack.pop();
+            TreeNode current = stack.pop();
             int depth = depths.pop();
 
             if (current == null) continue;
 
             if (depth % target == 0) {
-                Algorithm.TreeNode temp = current.left;
+                TreeNode temp = current.left;
                 current.left = current.right;
                 current.right = temp;
             }
@@ -70,10 +70,10 @@ public class AlgorithmSwapNodes {
         }
     }
 
-    private static List<Integer> inorderTraversal(Algorithm.TreeNode node) {
+    private static List<Integer> inorderTraversal(TreeNode node) {
         List<Integer> result = new ArrayList<>();
-        Stack<Algorithm.TreeNode> stack = new Stack<>();
-        Algorithm.TreeNode current = node;
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode current = node;
 
         while (current != null || !stack.isEmpty()) {
             while (current != null) {

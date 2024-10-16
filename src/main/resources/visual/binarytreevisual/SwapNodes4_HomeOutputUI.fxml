@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.Pane?>
 
@@ -12,22 +14,32 @@
       <Pane layoutX="11.0" layoutY="61.0" prefHeight="421.0" prefWidth="633.0" styleClass="Frame-Background">
          <children>
             <Label layoutX="6.0" layoutY="6.0" styleClass="Frame-Background-Foreground" text="Graphics Visual of Binary Tree (Final Iteration)" />
-            <Canvas fx:id="ResultCanvas" height="385.0" layoutX="14.0" layoutY="23.0" width="609.0" />
+            <ScrollPane layoutX="14.0" layoutY="23.0" prefHeight="385.0" prefWidth="609.0">
+               <content>
+                  <Canvas fx:id="ResultCanvas" height="2000.0" width="594.0" />
+               </content>
+            </ScrollPane>
          </children>
       </Pane>
       <Label layoutX="11.0" layoutY="486.0" prefHeight="17.0" prefWidth="100.0" styleClass="Frame-Foreground" text="nodes:" />
       <Label layoutX="11.0" layoutY="507.0" prefHeight="17.0" prefWidth="100.0" styleClass="Frame-Foreground" text="time taken:" />
-      <Label fx:id="nodesOutputLB" layoutX="118.0" layoutY="486.0" prefHeight="17.0" prefWidth="100.0" styleClass="Frame-Foreground" text="None" />
-      <Label fx:id="timeTakenLB" layoutX="118.0" layoutY="507.0" prefHeight="17.0" prefWidth="100.0" styleClass="Frame-Foreground" text="None" />
+      <Label fx:id="nodesOutputLB" layoutX="118.0" layoutY="486.0" prefHeight="17.0" prefWidth="244.0" styleClass="Frame-Foreground" text="None" />
+      <Label fx:id="timeTakenLB" layoutX="118.0" layoutY="507.0" prefHeight="17.0" prefWidth="244.0" styleClass="Frame-Foreground" text="None" />
       <Pane fx:id="LoadManualTreeButton" layoutX="513.0" layoutY="496.0" onMouseClicked="#HandlesClicked" prefHeight="30.0" prefWidth="130.0" styleClass="Frame-Background-Button">
          <children>
             <Label layoutX="10.0" layoutY="6.0" styleClass="Frame-Background-Button-Foreground" text="Load Manual Tree" />
          </children>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Pane>
       <Pane fx:id="LoadFileTreeButton" layoutX="368.0" layoutY="496.0" onMouseClicked="#HandlesClicked" prefHeight="30.0" prefWidth="130.0" styleClass="Frame-Background-Button">
          <children>
             <Label layoutX="22.0" layoutY="6.0" styleClass="Frame-Background-Button-Foreground" text="Load File Tree" />
          </children>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Pane>
    </children>
 </Pane>

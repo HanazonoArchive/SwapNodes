@@ -164,7 +164,6 @@ public class SwapNodes3_HomeInputController {
         List<Integer> finalIteration = new ArrayList<>();
         StringBuilder output = new StringBuilder();
 
-        // Iterate through the result and build output
         for (List<Integer> traversal : result) {
             if (isManual) {
                 appData.ManualoutputForDisplay.add(new ArrayList<>(traversal));
@@ -189,12 +188,14 @@ public class SwapNodes3_HomeInputController {
             appData.ManualIterrationTextAreaResult = "[Result]: \n" + output.toString();
             appData.ManualtimerNanoseconds = ManualelapsedTime;
             appData.ManualfinalIteration1DArray = finalIteration;
+            ManualstartTime = 0;
         } else {
             long FileendTime = System.nanoTime();
             long FileelapsedTime = FileendTime - FilestartTime;
             appData.FileIterrationTextAreaResult = "[Result]: \n" + output.toString();
             appData.FiletimerNanoseconds = FileelapsedTime;
             appData.FilefinalIteration1DArray = finalIteration;
+            FilestartTime = 0;
         }
 
         // Print the final iteration array for debugging
