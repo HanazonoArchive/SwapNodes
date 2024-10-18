@@ -18,7 +18,7 @@ public class drawTree {
         double canvasWidth = 594;
         double xOffset = 100; // Horizontal offset for drawing
         double yOffset = 100;  // Base vertical offset for drawing
-        double iterationSpacing = 150; // Space between each tree iteration
+        double iterationSpacing = 400; // Space between each tree iteration
 
         // Ensure the canvas is set to the correct width (no height limit applied)
         gc.getCanvas().setWidth(canvasWidth);

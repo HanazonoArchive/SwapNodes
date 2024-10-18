@@ -55,12 +55,15 @@ public class SwapNodes3_HomeInputController {
 
     @FXML
     void HandlesButtonClicked(MouseEvent event) {
+        AppData appData = AppData.getInstance();
         if (event.getSource() == ManualGenerateTreeButton) {
             // Manual input selected
+            appData.ManualtimerNanoseconds = 0;
             isManualInput = true;
             handleManualInput();
         } else if (event.getSource() == OpenFileButton) {
             // File input selected (just selecting file)
+            appData.FiletimerNanoseconds = 0;
             isManualInput = false;
             handleFileInput();
         } else if (event.getSource() == OpenFileGenerateTreeButton) {
@@ -96,7 +99,11 @@ public class SwapNodes3_HomeInputController {
     }
 
     private void handleFileInput() {
+        AppData appData = AppData.getInstance();
+
+        ManualstartTime = 0;
         FilestartTime = System.nanoTime();
+
         FileChooser fileChooser = new FileChooser();
 
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home"), "Desktop"));
@@ -108,7 +115,6 @@ public class SwapNodes3_HomeInputController {
             try {
                 String fileContent = new String(Files.readAllBytes(selectedFile.toPath()));
 
-                AppData appData = AppData.getInstance();
                 size = Integer.parseInt(SizeTextField.getText());
                 appData.sizeFile = size;
 
@@ -186,16 +192,16 @@ public class SwapNodes3_HomeInputController {
             long ManualendTime = System.nanoTime();
             long ManualelapsedTime = ManualendTime - ManualstartTime;
             appData.ManualIterrationTextAreaResult = "[Result]: \n" + output.toString();
-            appData.ManualtimerNanoseconds = ManualelapsedTime;
             appData.ManualfinalIteration1DArray = finalIteration;
-            ManualstartTime = 0;
+            appData.ManualtimerNanoseconds = ManualelapsedTime;
+
         } else {
             long FileendTime = System.nanoTime();
             long FileelapsedTime = FileendTime - FilestartTime;
             appData.FileIterrationTextAreaResult = "[Result]: \n" + output.toString();
-            appData.FiletimerNanoseconds = FileelapsedTime;
             appData.FilefinalIteration1DArray = finalIteration;
-            FilestartTime = 0;
+            appData.FiletimerNanoseconds = FileelapsedTime;
+
         }
 
         // Print the final iteration array for debugging
@@ -206,7 +212,9 @@ public class SwapNodes3_HomeInputController {
     @FXML
     void HandlesKeyboardTyped(MouseEvent event) {
         if (event.getSource() == ManualInputTextArea) {
+            AppData appData = AppData.getInstance();
             System.out.println("[Debug]: Key Typed has been observed.");
+            FilestartTime = 0;
             ManualstartTime = System.nanoTime();  // Start the timer when typing happens
         }
     }
