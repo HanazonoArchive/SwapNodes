@@ -86,7 +86,18 @@ public class SwapNodes3_HomeInputController {
             System.out.println("[Debug]: Parsed Manualindexes = " + appData.Manualindexes);
             System.out.println("[Debug]: Parsed Manualqueries = " + appData.Manualqueries);
 
+            // Timer starts before algorithm execution
+            long startAlgorithmTime = System.nanoTime();
+
             List<List<Integer>> result = AlgorithmSwapNodes.swapNodes(appData.Manualindexes, appData.Manualqueries);
+
+            // Timer stops after algorithm execution
+            long endAlgorithmTime = System.nanoTime();
+            long elapsedTimeForAlgorithm = endAlgorithmTime - startAlgorithmTime;
+
+            // Save the swap algorithm time
+            appData.ManualSwapAlgorithmTime = elapsedTimeForAlgorithm + " ns";
+            System.out.println("[Debug]: Manual swap algorithm execution time = " + appData.ManualSwapAlgorithmTime);
 
             displayResult(result, true);
 
@@ -141,20 +152,28 @@ public class SwapNodes3_HomeInputController {
 
     private void handleFileGenerateTree() {
         try {
-            // Here, we use the content already parsed in handleFileInput
             AppData appData = AppData.getInstance();
             size = Integer.parseInt(SizeTextField.getText());  // Get the size of the tree
             appData.sizeFile = size;
 
-            // Ensure Fileindexes and Filequeries are prepared for processing
             if (appData.Fileindexes.isEmpty() || appData.Filequeries.isEmpty()) {
                 System.out.println("[Error]: Fileindexes or Filequeries are empty. Please check your file input.");
-                return; // Exit if the data is not valid
+                return;
             }
 
-            List<List<Integer>> result = AlgorithmSwapNodes.swapNodes(appData.Fileindexes, appData.Filequeries); // Perform tree generation
+            // Timer starts before algorithm execution
+            long startAlgorithmTime = System.nanoTime();
 
-            // Display the result of the swap operation
+            List<List<Integer>> result = AlgorithmSwapNodes.swapNodes(appData.Fileindexes, appData.Filequeries);
+
+            // Timer stops after algorithm execution
+            long endAlgorithmTime = System.nanoTime();
+            long elapsedTimeForAlgorithm = endAlgorithmTime - startAlgorithmTime;
+
+            // Save the swap algorithm time
+            appData.FileSwapAlgorithmTime = elapsedTimeForAlgorithm + " ns";
+            System.out.println("[Debug]: File swap algorithm execution time = " + appData.FileSwapAlgorithmTime);
+
             displayResult(result, false);  // `false` signifies that it was file input
 
         } catch (NumberFormatException e) {

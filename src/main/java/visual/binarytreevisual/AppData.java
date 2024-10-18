@@ -27,7 +27,9 @@ public class AppData {
     public String FilepairCount; // To store pair count as a string
     public List<Integer> FilefinalIteration1DArray;
 
-
+    // New properties for swap algorithm execution time
+    public String ManualSwapAlgorithmTime; // For manual input swap algorithm time
+    public String FileSwapAlgorithmTime;   // For file input swap algorithm time
 
     // Private constructor to prevent instantiation
     private AppData() {
@@ -35,6 +37,8 @@ public class AppData {
         this.ManualpairCount = "";
         this.FiletimerNanoseconds = 0;
         this.FilepairCount = "";
+        this.ManualSwapAlgorithmTime = "";
+        this.FileSwapAlgorithmTime = "";
     }
 
     // Method to get the singleton instance

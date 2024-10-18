@@ -47,23 +47,41 @@ public class SwapNodes4_HomeOutputController {
     @FXML
     void HandlesClicked(MouseEvent event) {
         AppData appData = AppData.getInstance();
-        if (event.getSource() == LoadFileTreeButton){
+        GraphicsContext gc = ResultCanvas.getGraphicsContext2D();
+
+        // Clear the canvas before drawing new content
+        gc.clearRect(0, 0, ResultCanvas.getWidth(), ResultCanvas.getHeight());
+
+        if (event.getSource() == LoadFileTreeButton) {
             System.out.println("[DEBUG]: LoadFileTreeButton clicked");
-            nodesOutputLB.setText(appData.FilefinalIteration1DArray.toString());
+
+            if (appData.FilefinalIteration1DArray != null) {
+                nodesOutputLB.setText(appData.FilefinalIteration1DArray.toString());
+            } else {
+                nodesOutputLB.setText("No data available for file tree");
+            }
+
             timeTakenLB.setText(String.valueOf(appData.FiletimerNanoseconds));
 
-            List<List<Integer>> iterations = appData.ManualoutputForDisplay;  // or FileoutputForDisplay
+            List<List<Integer>> iterations = appData.FileoutputForDisplay;  // or FileoutputForDisplay
             drawTree treeDrawer = new drawTree();
-            treeDrawer.drawVisualTrees(ResultCanvas.getGraphicsContext2D(), iterations);
+            treeDrawer.drawVisualTrees(gc, iterations);  // Pass cleared gc for drawing
 
-        } else if (event.getSource() == LoadManualTreeButton){
+        } else if (event.getSource() == LoadManualTreeButton) {
             System.out.println("[DEBUG]: LoadManualTreeButton clicked");
-            nodesOutputLB.setText(appData.ManualfinalIteration1DArray.toString());
+
+            // Check if ManualfinalIteration1DArray is null before setting the text
+            if (appData.ManualfinalIteration1DArray != null) {
+                nodesOutputLB.setText(appData.ManualfinalIteration1DArray.toString());
+            } else {
+                nodesOutputLB.setText("No data available for manual tree");
+            }
+
             timeTakenLB.setText(String.valueOf(appData.ManualtimerNanoseconds));
 
-            List<List<Integer>> iterations = appData.FileoutputForDisplay;
+            List<List<Integer>> iterations = appData.ManualoutputForDisplay;
             drawTree treeDrawer = new drawTree();
-            treeDrawer.drawVisualTrees(ResultCanvas.getGraphicsContext2D(), iterations);
+            treeDrawer.drawVisualTrees(gc, iterations);  // Pass cleared gc for drawing
         }
     }
 }

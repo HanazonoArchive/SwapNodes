@@ -14,32 +14,31 @@ public class drawTree {
         // Step 1: Rebuild trees from each iteration
         List<BinaryTreeBuilder.Node> trees = rebuilder.rebuildTreesFromIterations(iterations);
 
-        // Step 2: Set canvas dimensions and drawing offsets
-        double canvasWidth = 594;
-        double xOffset = 100; // Horizontal offset for drawing
-        double yOffset = 100;  // Base vertical offset for drawing
-        double iterationSpacing = 400; // Space between each tree iteration
+        // Step 2: Set the canvas width dynamically (height depends on number of iterations)
+        double canvasWidth = gc.getCanvas().getWidth();
+        double baseYOffset = 100;  // Base vertical offset for drawing
+        double iterationSpacing = 200; // Space between each tree iteration
 
-        // Ensure the canvas is set to the correct width (no height limit applied)
-        gc.getCanvas().setWidth(canvasWidth);
-
-        // Draw each tree based on its iteration
+        // Draw each tree iteration
         for (int i = 0; i < trees.size(); i++) {
             BinaryTreeBuilder.Node root = trees.get(i);
             gc.save(); // Save the current state of the graphics context
 
             // Calculate the vertical position for each tree
-            double startX = canvasWidth / 2; // Center the tree horizontally
-            double startY = 100 + (i * (iterationSpacing + yOffset)); // Adjusting Y position for each tree
+            double startX = canvasWidth / 2; // Start at the center horizontally
+            double startY = baseYOffset + (i * iterationSpacing); // Vertical position for each tree
 
-            // Draw the tree
-            drawTreeAlgorithm(gc, root, startX, startY, xOffset, yOffset);
+            // Calculate maximum depth of the tree to adjust spacing
+            int maxDepth = calculateDepth(root);
+            double initialXOffset = canvasWidth / (Math.pow(1.2, maxDepth)); // Wider horizontal spacing based on depth
+
+            // Draw the tree for the current iteration
+            drawTreeAlgorithm(gc, root, startX, startY, initialXOffset, 80); // Adjust Y offset for more vertical space
 
             gc.restore(); // Restore the graphics context to the previous state
         }
     }
 
-    // Your original drawing algorithm
     private void drawTreeAlgorithm(GraphicsContext gc, BinaryTreeBuilder.Node node, double x, double y, double xOffset, double yOffset) {
         if (node == null) return;
 
@@ -47,14 +46,14 @@ public class drawTree {
         if (node.left != null) {
             gc.setStroke(Color.WHITE); // Set line color to white
             gc.strokeLine(x, y, x - xOffset, y + yOffset);
-            drawTreeAlgorithm(gc, node.left, x - xOffset, y + yOffset, xOffset / 2, yOffset);
+            drawTreeAlgorithm(gc, node.left, x - xOffset, y + yOffset, xOffset / 1.5, yOffset); // Reduce xOffset slower
         }
 
         // Draw right child connection line first
         if (node.right != null) {
             gc.setStroke(Color.WHITE); // Set line color to white
             gc.strokeLine(x, y, x + xOffset, y + yOffset);
-            drawTreeAlgorithm(gc, node.right, x + xOffset, y + yOffset, xOffset / 2, yOffset);
+            drawTreeAlgorithm(gc, node.right, x + xOffset, y + yOffset, xOffset / 1.5, yOffset); // Reduce xOffset slower
         }
 
         // Now draw the node (circle) on top of the lines
@@ -67,5 +66,11 @@ public class drawTree {
         gc.setFill(Color.BLACK); // Text color set to black
         gc.setFont(new Font(14));
         gc.fillText(String.valueOf(node.value), x - 6, y + 4);
+    }
+
+    // Calculate the depth of the binary tree to adjust the horizontal spacing
+    private int calculateDepth(BinaryTreeBuilder.Node node) {
+        if (node == null) return 0;
+        return 1 + Math.max(calculateDepth(node.left), calculateDepth(node.right));
     }
 }
